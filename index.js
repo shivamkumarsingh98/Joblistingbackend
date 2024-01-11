@@ -12,8 +12,14 @@ app.use(cors());
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+app.use((req,res,next)=>{
+  console.log('HTTP Method-'+ req.method + ", URL -" + req.url)
+  next()
+})
+
 app.use('/user',userRoute);
-app.use('/post',recruiterRoute)
+app.use('/create',recruiterRoute);
 
 
 main().catch(err => console.log("main error",err));

@@ -24,13 +24,13 @@ const register = async (req,res)=>{
         const token =jwt.sign({Email:newUser.Email, id : newUser._id}, SECRET_KEY)
 
       
-        res.status(200).json({message:` User register successfully`, token: token})
+        res.status(200).json({message:` User register successfully`, success: true,token , recruiterName: newUser.Name, Email:newUser.Email })
         
     }catch(error){
 
         console.log("Error:", error.message)
         res.status(500).json(" register:-internal server error",error)
-        next(error)
+        
     }
 
 }
@@ -38,8 +38,9 @@ const register = async (req,res)=>{
 
 const Login = async (req,res)=>{
     const{Email,Password}= req.body
+    console.log(req.body)
     try{
-        const userExgist = await PotalDataModel.findOne({Email:Email})
+        const userExgist = await userScima.findOne({Email:Email})
         if(!userExgist){
            return res.status(400).json({message:"user not found"})
         }
@@ -47,13 +48,13 @@ const Login = async (req,res)=>{
         if(!matchpassword){
            return res.status(400).json({message:"Invaled password"})
         }
-        const token =jwt.sign({Email:userExgist.Email, id : userExgist._id}, SECRET_KEY)
-        res.status(200).json({message:` Login Succesfull`, token: token})
+        const token =jwt.sign({Email:userExgist.Email,id:userExgist._id}, SECRET_KEY)
+        res.status(200).json({message:` Login Succesfull`,recruiterName:userExgist.Name, token: token})
     }catch(error){
 
         console.log("Login Error:", error.message)
         res.status(500).json({ message: "Login internal server error", error: error.message });
-        next(error)
+     
 
     }
 }

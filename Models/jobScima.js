@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema;
 
-const jobScima = new Schema({
+const jobdata = new Schema({
   name: {
     type: String, required: true
   },
@@ -31,7 +31,7 @@ const jobScima = new Schema({
     type: String, required: true
   },
   skills: {
-    type: String, required: true
+    type: [String], required: true
   },
   information: {
     type: String, required: true
@@ -45,4 +45,4 @@ const jobScima = new Schema({
 })
 
 
-module.exports = mongoose.model("jobdata",jobScima)
+module.exports = mongoose.model("jobdata",jobdata)
