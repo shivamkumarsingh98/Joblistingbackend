@@ -42,7 +42,9 @@ const Login = async (req,res)=>{
     try{
         const userExgist = await userScima.findOne({Email:Email})
         if(!userExgist){
+            
            return res.status(400).json({message:"user not found"})
+          
         }
         const matchpassword = await byct.compare(Password, userExgist.Password);
         if(!matchpassword){

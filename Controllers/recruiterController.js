@@ -54,10 +54,15 @@ const updatejob = async (req,res)=>{
         if(!jobpost){
             return res.status(404).json({ message: 'Job post not found' })
         }
+        let skillArray = skills;
+          if(typeof skills === 'string'){
+            skillArray = skills.split(',').map(skill => skill.trim());
+          }
         jobpost.name = name;
         jobpost.jobtype = jobtype;
-        jobpost.skills = skills;
+        jobpost.skills = skillArray;
         jobpost.recruiterName = recruiterName;
+        
 
         await jobpost.save();
         return res.json({ message: 'Job post updated successfully' });
@@ -96,7 +101,7 @@ const jobfilter = async (req,res) =>{
   const {jobtype, skills}= req.query;
 
   try{
-    let query = jobtype;
+    let query = {};
     if(jobtype){
       query.jobtype =jobtype;
     }
