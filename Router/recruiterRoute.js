@@ -9,9 +9,9 @@ recruiterRoute.use(bodyparser.urlencoded({extended:false}))
 recruiterRoute.use(express.json());
 recruiterRoute.use(express.urlencoded({extended:true})); 
 
-recruiterRoute.get("/job-posts/:id",getjob)
+recruiterRoute.get("/job-post/:id",getjob)
 recruiterRoute.post("/jobpost",auth, jobpost)
-recruiterRoute.get("/job-post",jobfilter)
+recruiterRoute.get("/api/job-post",jobfilter)
 recruiterRoute.put("/job-post/:id",auth,updatejob)
 
 
