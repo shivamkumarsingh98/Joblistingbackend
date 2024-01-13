@@ -19,7 +19,7 @@ app.use((req,res,next)=>{
 })
 
 app.use('/user',userRoute);
-app.use('/create',recruiterRoute);
+app.use('/api',recruiterRoute);
 
 
 main().catch(err => console.log("main error",err));
