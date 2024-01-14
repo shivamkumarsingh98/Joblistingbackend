@@ -85,13 +85,13 @@ const getjob = async (req,res)=>{
     }
 
     if (!jobpost) {
-      return res.status(404).json({ message: 'Job post not found' });
+      return res.send(404).json({ message: 'Job post not found' });
     }
 
     return res.json({ jobpost });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error', err });
   }
 
 }
@@ -114,7 +114,7 @@ const jobfilter = async (req,res) =>{
     return res.json({jobdata});
   }catch (error){
 console.log(error)
-return res.status(500).json({message:"somthing error"})
+return res.status(500).json({message:"somthing error",error})
   }
 }
 
