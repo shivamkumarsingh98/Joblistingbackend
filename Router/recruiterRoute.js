@@ -11,7 +11,7 @@ recruiterRoute.use(express.urlencoded({extended:true}));
 
 recruiterRoute.get("/job-post/:id",getjob)
 recruiterRoute.post("/jobpost",auth, jobpost)
-recruiterRoute.get("/api/job-post",jobfilter)
+recruiterRoute.get("/job-post",jobfilter)
 recruiterRoute.put("/job-post/:id",auth,updatejob)
 
 
